@@ -4,7 +4,6 @@
 const yearEl = document.querySelector('#year');
 yearEl.textContent = new Date().getFullYear();
 
-
 // ====================================================
 // 2. ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ ТЕМЫ
 //    JS переключает класс на <html>, а стили описаны в CSS
@@ -18,24 +17,49 @@ themeBtn.addEventListener('click', () => {
     themeBtn.textContent = isDark ? '☀️' : '🌙';
 });
 
-
 // ====================================================
-// 3. ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ
+// 3. ОТПРАВКА ФОРМЫ
 // ====================================================
 const form = document.querySelector('form');
 const statusMsg = document.querySelector('#form-status');
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();        // отменяем перезагрузку
+if (form && statusMsg) {
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Отменяем перезагрузку страницы
 
-    const name = document.querySelector('#name').value.trim();
+        const formData = new FormData(form);
 
-    statusMsg.textContent = `Спасибо, ${name}! Сообщение отправлено.`;
-    statusMsg.classList.add('visible');
+        // Показываем сообщение "Отправка..."
+        statusMsg.classList.remove('visible');
+        statusMsg.textContent = 'Отправка...';
+        statusMsg.classList.add('visible');
 
-    form.reset();                  // очищаем поля
-});
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
+            if (response.ok) {
+                // Успех
+                const nameInput = document.querySelector('#name');
+                const name = nameInput.value.trim();
+                
+                statusMsg.textContent = `Спасибо, ${name}! Сообщение отправлено.`;
+                form.reset();
+            } else {
+                // Ошибка от Formspree
+                statusMsg.textContent = 'Ой, что-то пошло не так. Попробуйте ещё раз.';
+            }
+        } catch (error) {
+            // Ошибка сети (например, пропал интернет)
+            statusMsg.textContent = 'Ошибка сети. Проверьте подключение к интернету.';
+        }
+    });
+}
 
 // ====================================================
 // 4. КНОПКА «НАВЕРХ» ПОЯВЛЯЕТСЯ ПРИ ПРОКРУТКЕ
