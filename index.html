@@ -6,11 +6,17 @@
     <meta name="description" content="Портфолио начинающего веб-разработчика">
     <title>Дулзынова Даяна</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ДОБАВЛЕНО: Стили для версии слабовидящих -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bvi@2.0.0/dist/css/bvi.min.css">
 </head>
 <body>
 
     <!-- ШАПКА -->
     <header>
+        <!-- ДОБАВЛЕНО: Кнопка вызова версии для слабовидящих -->
+        <a href="#" class="bvi-open" style="display: inline-block; margin-bottom: 15px; font-weight: bold; color: inherit; text-decoration: underline;">Версия для слабовидящих</a>
+        
         <button id="theme-toggle" title="Сменить тему">🌙</button>
         <nav>
             <a href="#about">Обо мне</a>
@@ -25,7 +31,7 @@
     <main>
         <!-- ОБО МНЕ -->
         <section id="about">
-            <img src="dayana.jpg" alt="Фото Ивана Иванова" width="160" height="160">
+            <img src="dayana.jpg" alt="Фото Дулзыновой Даяны" width="160" height="160">
             <div>
                 <h2>Обо мне</h2>
                 <p>Я изучаю <strong>веб-разработку</strong> и создаю сайты
@@ -94,5 +100,6 @@
     <!-- JAVASCRIPT (defer = выполнится после загрузки HTML) -->
     <script src="js/script.js" defer></script>
     <script src="js/screenreader.js"></script>
-</body>
-</html>
+
+    <!-- ДОБАВЛЕНО: Скрипт и инициализация версии для слабовидящих -->
+    <script src="https://cdn.jsdelivr.net/npm/bvi@2.0.0/dist/js/bvi.mi
