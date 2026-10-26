@@ -73,3 +73,21 @@ window.addEventListener('scroll', () => {
 upBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+// ====================================================
+// 5. ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ
+// ====================================================
+const viBtn = document.querySelector('#visually-impaired-toggle');
+
+if (viBtn) {
+    viBtn.addEventListener('click', () => {
+        // Включаем/выключаем класс на теге body
+        document.body.classList.toggle('high-contrast');
+        
+        // Меняем текст кнопки в зависимости от режима
+        if (document.body.classList.contains('high-contrast')) {
+            viBtn.textContent = 'Обычная версия';
+        } else {
+            viBtn.textContent = 'Версия для слабовидящих';
+        }
+    });
+}
