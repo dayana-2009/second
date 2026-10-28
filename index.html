@@ -11,10 +11,30 @@
 
     <!-- ШАПКА -->
     <header>
-        <!-- Кнопки управления -->
-        <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 100;">
-            <button id="visually-impaired-toggle" style="cursor: pointer; padding: 5px 10px; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;">Версия для слабовидящих</button>
-            <button id="theme-toggle" title="Сменить тему">🌙</button>
+        <!-- Кнопка вызова панели настроек -->
+        <button id="settings-btn" title="Настройки">⚙️</button>
+
+        <!-- Выезжающая панель настроек -->
+        <div id="settings-panel">
+            <div class="panel-header">
+                <!-- НАЗВАНИЕ ПО ГОСТУ ВОЗВРАЩЕНО -->
+                <h3>Специальные возможности</h3>
+            </div>
+            
+            <div class="panel-content">
+                <button id="theme-toggle" class="panel-btn">🌙 Тёмная тема</button>
+                <button id="visually-impaired-toggle" class="panel-btn">🌓 Высокая контрастность</button>
+                <button id="screenreader-btn" class="panel-btn">🔊 Озвучить текст</button>
+                
+                <div class="font-sizer">
+                    <span>Размер шрифта:</span>
+                    <div class="font-controls">
+                        <button id="font-decrease" title="Уменьшить">A-</button>
+                        <span id="font-size-display">100%</span>
+                        <button id="font-increase" title="Увеличить">A+</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <nav>
@@ -28,7 +48,6 @@
     </header>
 
     <main>
-        <!-- ОБО МНЕ -->
         <section id="about">
             <img src="dayana.jpg" alt="Фото Дулзыновой Даяны" width="160" height="160">
             <div>
@@ -38,7 +57,6 @@
             </div>
         </section>
 
-        <!-- НАВЫКИ -->
         <section id="skills">
             <h2>Навыки</h2>
             <ul>
@@ -49,7 +67,6 @@
             </ul>
         </section>
 
-        <!-- ПРОЕКТЫ -->
         <section id="projects">
             <h2>Мои проекты</h2>
             <article>
@@ -69,7 +86,6 @@
             </article>
         </section>
 
-        <!-- КОНТАКТЫ -->
         <section id="contacts">
             <h2>Связаться со мной</h2>
             <form action="https://formspree.io/f/xyekroop" method="POST">
@@ -88,16 +104,18 @@
         </section>
     </main>
 
-    <!-- ПОДВАЛ -->
     <footer>
         <p>© <span id="year">2026</span> Дулзынова Даяна. Проект на HTML + CSS + JS.</p>
     </footer>
 
-    <!-- КНОПКА «НАВЕРХ» -->
     <button id="to-top" title="Наверх">↑</button>
 
-    <!-- JAVASCRIPT -->
+    <!-- Панель управления скринридером -->
+    <div id="sr-nav" style="display: none;">
+        <button id="sr-prev" title="Назад">↑</button>
+        <button id="sr-next" title="Вперед">↓</button>
+    </div>
+
     <script src="js/script.js" defer></script>
-    <script src="js/screenreader.js"></script>
 </body>
 </html>
